@@ -1,2 +1,1 @@
-# VORLAGE_IntMed_II
-
+# IntMed_II
