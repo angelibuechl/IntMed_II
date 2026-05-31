@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Coiny&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Shrikhand&display=swap');
+
+.title {
+    font-family: "Shrikhand", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.main {
+    font-family: "Coiny", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    
+}
+
+.secondary {
+    font-family: "Nunito", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
