@@ -62,15 +62,23 @@ body{
 header{
     align-items: center;
     position: sticky;
-    padding-top: 118px;
 }
 
-.logo{
+.logo, .logo_start{
     display: block;
     font: var(--ff-title);
     color: var(--col-text1);
     text-align: center;
-    padding-bottom: 130px;
+}
+
+.logo{
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+
+.logo_start{
+    padding-top: 100px;
+    padding-bottom: 80px;
 }
 
 /*Menu*/
