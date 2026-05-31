@@ -136,7 +136,13 @@ nav a:hover{
 /*Footer*/
 footer{
     background-color: var(--col-text1);
-    p{
-        color: var(--col-background);
-    }
+    height: 142px;
+    box-sizing: border-box;
+    padding-top: 110px;
+}
+
+footer p{
+    color: var(--col-background);
+    text-align: center;
+    margin: 0;
 }
