@@ -65,7 +65,8 @@ header{
     padding-top: 118px;
 }
 
-title{
+.logo{
+    display: block;
     font: var(--ff-title);
     color: var(--col-text1);
     text-align: center;
