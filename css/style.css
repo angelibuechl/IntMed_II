@@ -1,11 +1,60 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import "resets.css";
+@import "fonts.css";
+
+:root {
+  /*Fonts*/
+  --ff-title: 400 clamp(48px, 8vw, 96px)/normal "Shrikhand", serif;
+  --ff-smalltitle: 400 clamp(28px, 4vw, 40px)/normal "Coiny", system-ui;
+  --ff-nav: 800 clamp(18px, 2.5vw, 24px)/normal "Nunito", sans-serif;
+  --ff-button: 800 clamp(16px, 2vw, 20px)/normal "Nunito", sans-serif;
+  --ff-text: 400 clamp(14px, 1.6vw, 16px)/normal "Nunito", sans-serif;
+  
+  /*Colors*/
+  --col-background: #FFF7EC;
+  --col-text1: #6B4F4F;
+  --col-text2: #0000;
+  --col-selected: #7ED7C1;
+  --col-button: #FFA5C3;
+  --col-hover: #FFD166;
+  --col-border: #B6D7A8;
+
+  /*Spacing*/
+  --button_start-gap: 31px;
+  --button-pad: 25px;
+  --card-gap: 74px;
+  --card-pad: 24px;  
 }
 
-
-body {
-    background-color: pink;
+/* ********************************************************** */
+/*Base*/
+h1{
+    font: var(--ff-title);
+}
+h2{
+    font: var(--ff-smalltitle);
+}
+h3{
+    font: var(--ff-nav);
+}
+button{
+    font: var(--ff-button);
+}
+p{
+    font: var(--ff-text);
+    color: var(--col-text2);
+    text-align: left;
+}
+h1, h2, h3, button{
+    color: var(--col-text1);
+    text-align: center;
 }
 
+body{
+    background-color: var(--col-background);
+}
+
+/* ********************************************************** */
+/*Footer*/
+footer{
+    background-color: var(--col-text1);
+}
