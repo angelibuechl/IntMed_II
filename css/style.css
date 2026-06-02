@@ -57,16 +57,17 @@ a{
 
 body{
     background-color: var(--col-background);
-
     min-height: 100vh;
     margin: 0;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 main{
     position: relative;
     flex: 1;
+    overflow: visible;
 }
 
 /* ********************************************************** */
@@ -155,6 +156,7 @@ img{
     bottom: -155px;
     right: -467px;
     width: clamp(320px, 92vw, 1325px);
+    max-width: none;
 }
 .cat_img_2{
     bottom: -75px;
