@@ -20,6 +20,16 @@
       </nav>
     </header>
     <main class="breeds_page">
+      <div class="breed_controls">
+        <label for="breed_sort">sort by:</label>
+        <select id="breed_sort">
+          <option value="breed">breed name</option>
+          <option value="country">country</option>
+          <option value="origin">origin</option>
+          <option value="coat">coat</option>
+          <option value="pattern">pattern</option>
+        </select>
+      </div>
       <section class="breed_grid" id="breedGrid">
         <p class="breed_status" id="breedStatus">cat breeds loading...</p>
       </section>
