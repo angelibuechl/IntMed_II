@@ -215,7 +215,7 @@ img{
 
 .breed_status {
     color: var(--col-button);
-    font-size: large;
+    font-size: xx-large;
     text-align: center;
     grid-column: 1 / -1;
 }
