@@ -24,6 +24,7 @@
   --button-border: 47.5px;
   --card-gap: 74px;
   --card-pad: 24px;  
+  --img-width: clamp(220px, 42vw, 520px);
 }
 
 /* ********************************************************** */
@@ -56,7 +57,18 @@ a{
 
 body{
     background-color: var(--col-background);
+
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
+
+main{
+    position: relative;
+    flex: 1;
+}
+
 /* ********************************************************** */
 /*Header*/
 header{
@@ -131,14 +143,41 @@ nav a:hover{
     background-color: var(--col-hover);
 }
 
+/*Images*/
+img{
+    position: absolute;
+    height: auto;
+    width: var(--img-width);
+    right: 0;
+    z-index: 2;
+}
+.cat_img_1{
+    bottom: -155px;
+    right: -467px;
+    width: clamp(320px, 92vw, 1325px);
+}
+.cat_img_2{
+    bottom: -75px;
+}
+.cat_img_3{
+    left: 0;
+    bottom: -120px;
+}
+.cat_img_4{
+    left: 0;
+    bottom: -150px;
+}
+.cat_img_5{
+    bottom: -150px;
+}
 
 /* ********************************************************** */
 /*Footer*/
 footer{
     background-color: var(--col-text1);
-    height: 142px;
+    height: 130px;
     box-sizing: border-box;
-    padding-top: 110px;
+    padding-top: 80px;
 }
 
 footer p{
