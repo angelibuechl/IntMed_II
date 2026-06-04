@@ -299,6 +299,35 @@ img{
     color: var(--col-text1);
 }
 
+/*jump up*/
+html {
+    scroll-behavior: smooth;
+}
+.jump_up_button {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(120px, 18vw, 170px);
+    height: clamp(50px, 6vw, 65px);
+    margin: 75px auto 0;
+    background-color: var(--col-hover);
+    color: var(--col-text1);
+    font: var(--ff-button);
+    border-radius: var(--button-border);
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+.jump_up_button:hover {
+    background-color: var(--col-selected);
+}
+
+.jump_up_button:focus-visible {
+    outline: 3px solid var(--col-selected);
+    outline-offset: 4px;
+}
+
 /* ********************************************************** */
 /*Footer*/
 footer{
