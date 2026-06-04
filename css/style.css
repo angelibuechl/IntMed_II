@@ -33,6 +33,9 @@
   --card-label-width: clamp(90px, 10vw, 120px);
 
   --img-width: clamp(220px, 42vw, 520px);
+
+  --sort_height: clamp(45px, 5vw, 60px);
+
 }
 
 /* ********************************************************** */
@@ -101,6 +104,7 @@ header{
 nav{
     font: var(--ff-button);
     width: 100%;
+    margin: 0;
 }
 nav ul{
     display: flex;
@@ -137,6 +141,7 @@ nav a{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 .menu a{
     font-size: clamp(12px, 1.2vw, 16px);
@@ -240,8 +245,44 @@ img{
     overflow-wrap: anywhere;
 }
 
-/*sort button*/
+/*sort by*/
 .breed_controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 75px;
+    width: fit-content;
+    background-color: var(--col-hover);
+    border-radius: var(--button-border);
+    height: var(--sort_height);
+    padding: 0 20px 0 28px;
+}
+.breed_controls label{
+    font: var(--ff-button);
+    color: var(--col-text1);
+    padding: 0;
+    height: auto;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+#breed_sort{
+    font: var(--ff-button);
+    color: var(--col-text1);
+    background-color: var(--col-hover);
+    border:var(--col-hover);
+    border-radius: var(--button-border);
+    height: var(--sort_height);
+    padding: 0 8px;
+    cursor: pointer;
+
+}
+#breed_sort:hover,
+.breed_controls:hover,
+.breed_controls:hover{
+    background-color: var(--col-selected);
 }
 
 
@@ -253,7 +294,6 @@ footer{
     box-sizing: border-box;
     padding-top: 80px;
 }
-
 footer p{
     color: var(--col-background);
     text-align: center;
