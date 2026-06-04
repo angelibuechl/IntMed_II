@@ -119,3 +119,32 @@ function createInfoRow(label, value) {
     row.appendChild(description);
     return row;
 }
+
+/**facts**/
+const catFact = document.querySelector('#catFact');
+const factText = document.querySelector('#factText');
+const catFactButton = document.querySelector('#catFactButton');
+
+if (factStatus !== null && factText !== null && factButton !== null) {
+    await initFactsPage();
+}
+
+async function initFactsPage() {
+    await showCatFact();
+    factButton.addEventListener('click', showCatFact);
+}
+
+async function showCatFact() {
+    factStatus.innerText = 'cat fact loading...';
+    factText.innerText = '';
+    factButton.disabled = true;
+    const data = await loadApiData(apiUrls.fact);
+    if (data !== false && data.fact !== undefined) {
+        factStatus.innerText = '';
+        factText.innerText = data.fact;
+    } else {
+        factStatus.innerText = 'cat fact could not be loaded';
+        factText.innerText = '';
+    }
+    factButton.disabled = false;
+}
