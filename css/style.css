@@ -159,7 +159,7 @@ nav a:hover{
 }
 
 /*loading status*/
-.breed_status, .fact_status, .picture_status {
+.breed_status, .fact_status, .picture_status, .memory_status {
     font: var(--ff-button);
     color: var(--col-button);
     font-size: xx-large;
@@ -432,55 +432,73 @@ img{
 .memory_page {
     padding: 60px clamp(20px, 6vw, 90px) 180px;
 }
-
 .memory_grid {
     position: relative;
     z-index: 3;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: clamp(25px, 4vw, 55px);
-    max-width: 835px;
+    max-width: var(--card-grid-max);
     margin: 0 auto;
 }
-
 .memory_card {
+    position: relative;
     aspect-ratio: 1 / 1;
-    box-sizing: border-box;
-    background-color: var(--col-border);
+    background-color: transparent;
     border: none;
-    border-radius: 32px;
-    padding: var(--card-pad);
+    border-radius: var(--button-border);
+    padding: 0;
     cursor: pointer;
+    perspective: 900px;
+    transform-style: preserve-3d;
+}
+.memory_card::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--col-border);
+    border-radius: var(--button-border);
+    backface-visibility: hidden;
+    transition: transform 0.4s;
+    z-index: 2;
 }
 .memory_card_inner {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    inset: 0;
     box-sizing: border-box;
-    background-color: var(--col-background);
-    border-radius: 24px;
-    overflow: hidden;
+    border-radius: var(--button-border);
+    background-color: var(--col-border);
+    padding: var(--card-pad);
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    transition: transform 0.4s;
+    z-index: 1;
+}
+.memory_card.open::before,
+.memory_card.done::before {
+    transform: rotateY(180deg);
+}
+.memory_card.open .memory_card_inner, .memory_card.done .memory_card_inner{
+   transform: rotateY(0deg);
 }
 .memory_img {
     position: static;
-    display: none;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: auto;
-}
-.memory_card.open .memory_img,
-.memory_card.done .memory_img {
-    display: block;
-}
-@media (max-width: 700px) {
-    .memory_grid {
-        grid-template-columns: repeat(3, minmax(90px, 1fr));
-    }
+    border-radius: var(--button-border);
 }
 
+@media (max-width: 700px) {
+    .memory_grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 @media (max-width: 450px) {
     .memory_grid {
-        grid-template-columns: repeat(2, minmax(90px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 

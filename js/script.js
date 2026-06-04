@@ -233,6 +233,9 @@ function createMemoryCard(cat) {
     card.classList.add('memory_card');
     card.dataset.id = cat.id;
 
+    card.type = 'button';
+    card.setAttribute('aria-label', 'memory card');
+
     const inner = document.createElement('div');
     inner.classList.add('memory_card_inner');
 
