@@ -79,6 +79,7 @@ function createBreedCard(breed) {
     title.innerText = breed.breed;
 
     const list = document.createElement('dl');
+    list.classList.add('breed_info_list');
 
     //Infozeilen
     const country = createInfoRow('country:', breed.country);
@@ -103,10 +104,10 @@ function createInfoRow(label, value) {
     const row = document.createElement('div');
     row.classList.add('breed_info_row');
 
-    const term = document.createElement('dt');
+    const term = document.createElement('h3');
     term.innerText = label;
 
-    const description = document.createElement('dd');
+    const description = document.createElement('p');
     
     // Wenn kein Wert vorhanden ist, "-" anzeigen
     if (value === '' || value === null || value === undefined) {

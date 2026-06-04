@@ -193,8 +193,8 @@ img{
     margin: 0 auto;
 }
 .breed_card {
-    width: 344px;
-    min-height: 327px;
+    width: 380px;
+    height: 390px;
     box-sizing: border-box;
 
     background-color: var(--col-border);
@@ -202,15 +202,20 @@ img{
 
     padding: 24px;
 }
-
 .breed_card_inner {
-    min-height: 280px;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
 
     background-color: var(--col-background);
     border-radius: 24px;
 
-    padding: 14px 10px 24px;
+    padding: 10px;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+
+    overflow: visible;
 }
 
 .breed_status {
@@ -219,6 +224,29 @@ img{
     text-align: center;
     grid-column: 1 / -1;
 }
+
+
+.breed_info_row {
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: 120px 1fr;
+    column-gap: 30px;
+    padding: 3px;
+    margin: 0;
+}
+.breed_info_row h3 {
+    font: var(--ff-nav);
+    color: var(--col-text1);
+    text-align: left;
+}
+.breed_info_row p {
+    font: var(--ff-text);
+    color: var(--col-text1);
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+
 
 /* ********************************************************** */
 /*Footer*/
