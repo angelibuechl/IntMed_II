@@ -170,6 +170,7 @@ nav a:hover{
 /*buttons*/
 html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 .jump_up_button, .fact_button, .picture_button, .memory_button {
     position: relative;
@@ -204,6 +205,7 @@ img{
     height: auto;
     width: var(--img-width);
     right: 0;
+    left: auto;
     z-index: 2;
 }
 .cat_img_1{
@@ -217,10 +219,12 @@ img{
 }
 .cat_img_3{
     left: 0;
+    right: auto;
     bottom: -120px;
 }
 .cat_img_4{
     left: 0;
+    right: auto;
     bottom: -150px;
 }
 .cat_img_5{
@@ -324,8 +328,9 @@ img{
     background-color: var(--col-selected);
 }
 #breed_sort option{
-    background-color: var(--col-background);
+    background-color: white;
     color: var(--col-text1);
+    font: var(--ff-button);
 }
 #breed_sort option:hover{
     background-color: var(--col-selected);
