@@ -121,12 +121,12 @@ function createInfoRow(label, value) {
 }
 
 /**facts**/
-const catFact = document.querySelector('#catFact');
+const factStatus = document.querySelector('#factStatus');
 const factText = document.querySelector('#factText');
-const catFactButton = document.querySelector('#catFactButton');
+const factButton = document.querySelector('#factButton');
 
 if (factStatus !== null && factText !== null && factButton !== null) {
-    await initFactsPage();
+    initFactsPage();
 }
 
 async function initFactsPage() {
@@ -147,4 +147,44 @@ async function showCatFact() {
         factText.innerText = '';
     }
     factButton.disabled = false;
+}
+
+/**pictures**/
+const pictureCard = document.querySelector('#pictureCard');
+const pictureStatus = document.querySelector('#pictureStatus');
+const catPicture = document.querySelector('#catPicture');
+const pictureButton = document.querySelector('#pictureButton');
+
+if (pictureCard && pictureStatus && catPicture && pictureButton) {
+    initPicturesPage();
+}
+async function initPicturesPage() {
+    await showCatPicture();
+    pictureButton.addEventListener('click', showCatPicture);
+}
+async function showCatPicture() {
+    pictureStatus.innerText = 'cat picture loading...';
+    catPicture.style.display = 'none';
+    pictureButton.disabled = true;
+    const data = await loadApiData(apiUrls.catImage);
+
+if (data && data[0]) {
+        const image = data[0];
+
+        // NEU: Höhe bleibt gleich, Breite wird proportional angepasst
+        const ratio = image.width / image.height;
+        const newWidth = pictureCard.offsetHeight * ratio;
+        pictureCard.style.width = `min(100%, ${newWidth}px)`;
+
+        catPicture.onload = function () {
+            pictureStatus.innerText = '';
+            catPicture.style.display = 'block';
+            pictureButton.disabled = false;
+        };
+
+        catPicture.src = image.url;
+    } else {
+        pictureStatus.innerText = 'cat picture could not be loaded';
+        pictureButton.disabled = false;
+    }
 }
