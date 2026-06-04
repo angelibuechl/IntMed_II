@@ -432,14 +432,22 @@ img{
 .memory_page {
     padding: 60px clamp(20px, 6vw, 90px) 180px;
 }
+.memory_area {
+    position: relative;
+    z-index: 3;
+    max-width: var(--card-grid-max);
+    margin: 0 auto;
+}
 .memory_grid {
     position: relative;
     z-index: 3;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: clamp(25px, 4vw, 55px);
-    max-width: var(--card-grid-max);
-    margin: 0 auto;
+}
+.memory_grid.solved {
+    opacity: 0.35;
+    filter: grayscale(20%);
 }
 .memory_card {
     position: relative;
@@ -488,7 +496,27 @@ img{
     height: 100%;
     object-fit: cover;
     z-index: auto;
+    border-radius: 24px;
+}
+.memory_message {
+    display: none;
+    position: absolute;
+    z-index: 6;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: clamp(18px, 4vw, 34px);
+    width: min(80%, 520px);
+    font: var(--ff-smalltitle);
+    color: var(--col-button);
+    background-color: var(--col-background);
+    border: 10px solid var(--col-border);
     border-radius: var(--button-border);
+    text-align: center;
+}
+.memory_message.show {
+    display: block;
 }
 
 @media (max-width: 700px) {

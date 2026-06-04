@@ -191,6 +191,7 @@ if (data && data[0]) {
 const memoryGrid = document.querySelector('#memoryGrid');
 const memoryStatus = document.querySelector('#memoryStatus');
 const memoryButton = document.querySelector('#memoryButton');
+const memoryMessage = document.querySelector('#memoryMessage');
 
 let firstCard = null;
 let secondCard = null;
@@ -208,6 +209,12 @@ async function initMemoryPage() {
 async function showMemory() {
     memoryGrid.innerHTML = '<p class="memory_status" id="memoryStatus">cat memory loading...</p>';
     memoryButton.disabled = true;
+    memoryGrid.classList.remove('solved');
+    if (memoryMessage !== null) {
+        memoryMessage.classList.remove('show');
+        memoryMessage.innerText = '';
+    }
+
     const data = await loadApiData(apiUrls.memory);
     if (data !== false && Array.isArray(data) && data.length >= 6) {
         const sixCats = data.slice(0, 6);
@@ -267,6 +274,7 @@ function flipMemoryCard(card) {
     if (firstCard.dataset.id === secondCard.dataset.id) {
         firstCard.classList.add('done');
         secondCard.classList.add('done');
+        checkMemorySolved();
         resetMemoryTurn();
     } else {
         setTimeout(function () {
@@ -280,4 +288,15 @@ function resetMemoryTurn() {
     firstCard = null;
     secondCard = null;
     lockMemory = false;
+}
+function checkMemorySolved() {
+    const allCards = document.querySelectorAll('.memory_card');
+    const doneCards = document.querySelectorAll('.memory_card.done');
+    if (allCards.length > 0 && allCards.length === doneCards.length) {
+        memoryGrid.classList.add('solved');
+        if (memoryMessage !== null) {
+            memoryMessage.innerText = 'Congratulations! You solved the memory!';
+            memoryMessage.classList.add('show');
+        }
+    }
 }
