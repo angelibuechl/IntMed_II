@@ -6,7 +6,8 @@ console.log("blub");
 const apiUrls={
     breeds: 'https://catfact.ninja/breeds',
     fact: 'https://catfact.ninja/fact',
-    catImage: 'https://api.thecatapi.com/v1/images/search'
+    catImage: 'https://api.thecatapi.com/v1/images/search',
+    memory: 'https://api.thecatapi.com/v1/images/search?limit=6'
 };
 
 async function loadApiData(url) {
@@ -170,8 +171,6 @@ async function showCatPicture() {
 
 if (data && data[0]) {
         const image = data[0];
-
-        // NEU: Höhe bleibt gleich, Breite wird proportional angepasst
         const ratio = image.width / image.height;
         const newWidth = pictureCard.offsetHeight * ratio;
         pictureCard.style.width = `min(100%, ${newWidth}px)`;
@@ -181,10 +180,101 @@ if (data && data[0]) {
             catPicture.style.display = 'block';
             pictureButton.disabled = false;
         };
-
         catPicture.src = image.url;
     } else {
         pictureStatus.innerText = 'cat picture could not be loaded';
         pictureButton.disabled = false;
     }
+}
+
+/**memory**/
+const memoryGrid = document.querySelector('#memoryGrid');
+const memoryStatus = document.querySelector('#memoryStatus');
+const memoryButton = document.querySelector('#memoryButton');
+
+let firstCard = null;
+let secondCard = null;
+let lockMemory = false;
+
+if (memoryGrid !== null && memoryButton !== null) {
+    initMemoryPage();
+}
+
+async function initMemoryPage() {
+    await showMemory();
+    memoryButton.addEventListener('click', showMemory);
+}
+
+async function showMemory() {
+    memoryGrid.innerHTML = '<p class="memory_status" id="memoryStatus">cat memory loading...</p>';
+    memoryButton.disabled = true;
+    const data = await loadApiData(apiUrls.memory);
+    if (data !== false && Array.isArray(data) && data.length >= 6) {
+        const sixCats = data.slice(0, 6);
+        const cards = [...sixCats, ...sixCats].sort(function () {
+            return Math.random() - 0.5;
+        });
+        memoryGrid.innerHTML = '';
+        firstCard = null;
+        secondCard = null;
+        lockMemory = false;
+        cards.forEach(function (cat) {
+            const card = createMemoryCard(cat);
+            memoryGrid.appendChild(card);
+        });
+    } else {
+        memoryGrid.innerHTML = '<p class="memory_status">memory could not be loaded</p>';
+    }
+    memoryButton.disabled = false;
+}
+
+function createMemoryCard(cat) {
+    const card = document.createElement('button');
+    card.classList.add('memory_card');
+    card.dataset.id = cat.id;
+
+    const inner = document.createElement('div');
+    inner.classList.add('memory_card_inner');
+
+    const image = document.createElement('img');
+    image.classList.add('memory_img');
+    image.src = cat.url;
+    image.alt = 'cat memory picture';
+
+    inner.appendChild(image);
+    card.appendChild(inner);
+    card.addEventListener('click', function () {
+        flipMemoryCard(card);
+    });
+    return card;
+}
+
+function flipMemoryCard(card) {
+    if (lockMemory || card.classList.contains('open') || card.classList.contains('done')) {
+        return;
+    }
+    card.classList.add('open');
+    if (firstCard === null) {
+        firstCard = card;
+        return;
+    }
+    secondCard = card;
+    lockMemory = true;
+
+    if (firstCard.dataset.id === secondCard.dataset.id) {
+        firstCard.classList.add('done');
+        secondCard.classList.add('done');
+        resetMemoryTurn();
+    } else {
+        setTimeout(function () {
+            firstCard.classList.remove('open');
+            secondCard.classList.remove('open');
+            resetMemoryTurn();
+        }, 900);
+    }
+}
+function resetMemoryTurn() {
+    firstCard = null;
+    secondCard = null;
+    lockMemory = false;
 }
