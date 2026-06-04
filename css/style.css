@@ -7,7 +7,7 @@
   --ff-smalltitle: 400 clamp(28px, 4vw, 40px)/normal "Coiny", system-ui;
   --ff-nav: 800 clamp(24px, 2.5vw, 24px)/normal "Nunito", sans-serif;
   --ff-button: 800 clamp(12px, 2vw, 24px)/1 "Nunito", sans-serif;
-  --ff-text: 400 clamp(14px, 1.6vw, 16px)/normal "Nunito", sans-serif;
+  --ff-text: 400 clamp(14px, 1.6vw, 20px)/normal "Nunito", sans-serif;
   
   /*Colors*/
   --col-background: #FFF7EC;
