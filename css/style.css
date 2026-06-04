@@ -120,8 +120,10 @@ nav a{
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    white-space: nowrap;
-    padding: 0;
+    white-space: normal;
+    text-wrap: balance;
+    line-height: 1.1;
+    padding: 0 16px;
     width: clamp(160px, 17vw, 261px);
     height: clamp(55px, 6vw, 83px);
     flex: 1;
