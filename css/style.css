@@ -196,12 +196,80 @@ html {
     border: none;
     cursor: pointer;
 }
-.jump_up_button:hover, .fact_button:hover, .picture_button:hover, .memory_button:hover {
+.jump_up_button:hover,
+.fact_button:hover,
+.picture_button:hover,
+.memory_button:hover {
     background-color: var(--col-selected);
 }
-.jump_up_button:focus-visible, .fact_button:focus-visible, .picture_button:focus-visible, .memory_button:focus-visible {
+
+.jump_up_button,
+.scroll_up_button,
+.jump_up_button:hover,
+.scroll_up_button:hover,
+.jump_up_button:active,
+.scroll_up_button:active,
+.jump_up_button:focus,
+.scroll_up_button:focus,
+.jump_up_button:visited,
+.scroll_up_button:visited {
+    background-color: var(--col-hover);
+}
+.fact_button:active,
+.picture_button:active,
+.memory_button:active,
+.fact_button:focus,
+.picture_button:focus,
+.memory_button:focus,
+.fact_button:disabled,
+.picture_button:disabled,
+.memory_button:disabled {
+    background-color: var(--col-hover);
+}
+
+.fact_button:focus-visible, 
+.picture_button:focus-visible,
+.memory_button:focus-visible,
+.jump_up_button:focus-visible,
+.scroll_up_button:focus-visible {
+    background-color: var(--col-hover);
     outline: 3px solid var(--col-selected);
     outline-offset: 4px;
+}
+.scroll_up_button {
+    position: fixed;
+    right: clamp(20px, 4vw, 50px);
+    bottom: clamp(20px, 4vw, 50px);
+    z-index: 50;
+
+    width: clamp(50px, 7vw, 70px);
+    height: clamp(50px, 7vw, 70px);
+    margin: 0;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(12px);
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        transform 0.2s ease,
+        background-color 0.2s;
+}
+.scroll_up_button.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+@media (max-width: 700px) {
+    .scroll_up_button {
+        width: 52px;
+        height: 52px;
+        right: 20px;
+        bottom: 20px;
+    }
 }
 
 /* ********************************************************** */
@@ -336,7 +404,6 @@ img{
     text-align: left;
     overflow-wrap: anywhere;
 }
-
 /*sort by*/
 .breed_controls {
     position: relative;
@@ -425,10 +492,8 @@ img{
     background-color: var(--col-hover);
 }
 
-
 /* ********************************************************** */
 /*cat fact card*/
-
 .fact_grid {
     position: relative;
     z-index: 3;

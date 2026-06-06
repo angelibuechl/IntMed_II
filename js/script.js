@@ -342,3 +342,25 @@ if (mouseCursor !== null) {
         mouseCursor.style.top = event.clientY + 'px';
     });
 }
+
+/**scroll up button**/
+const scrollUpButton = document.querySelector('#scrollUpButton');
+const bottomJumpButton = document.querySelector('#bottomJumpButton');
+
+if (scrollUpButton !== null && bottomJumpButton !== null) {
+    function toggleScrollUpButton() {
+        const hasScrolledDown = window.scrollY > 250;
+        const bottomButtonRect = bottomJumpButton.getBoundingClientRect();
+        const bottomButtonIsVisible =
+            bottomButtonRect.top < window.innerHeight &&
+            bottomButtonRect.bottom > 0;
+        if (hasScrolledDown && !bottomButtonIsVisible) {
+            scrollUpButton.classList.add('show');
+        } else {
+            scrollUpButton.classList.remove('show');
+        }
+    }
+    window.addEventListener('scroll', toggleScrollUpButton);
+    window.addEventListener('resize', toggleScrollUpButton);
+    toggleScrollUpButton();
+}
