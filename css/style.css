@@ -138,6 +138,9 @@ nav a:hover{
     flex-direction: column;
     align-items: center;
     gap: 31px;
+    width: fit-content;
+    margin-left: clamp(40px, 8vw, 120px);
+    margin-right: auto;
 }
 .menu_start a {
     width: 261px;
@@ -212,7 +215,7 @@ img{
 }
 .cat_img_1{
     right: 0px;
-    width: clamp(248px, 60vw, 865px);;
+    width: clamp(248px, 60vw, 865px);
     max-width: none;
     bottom: clamp(-100px, -7.64vw, -70px);
 }
@@ -576,6 +579,9 @@ img{
     }
     .menu_start {
         gap: 10px;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
     }
     .menu_start a {
         width: clamp(160px, 46.25vw, 196px);
@@ -665,6 +671,13 @@ img{
     nav ul.menu a.active {
         background-color: var(--col-selected);
     }
+
+    .cat_img_1 {
+        right: 0px;
+        bottom: -60px;
+        width: clamp(248px, 65vw, 500px);
+    }
+
     /*breeds*/
     .breed_grid {
         grid-template-columns: 249px;
