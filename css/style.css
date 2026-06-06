@@ -250,7 +250,16 @@ img{
     );
     transition: transform 0.06s linear;
 }
-
+@media (max-width: 1024px) {
+    .cat_start_wrap {
+        right: 0;
+        bottom: -80px;
+        width: clamp(248px, 65vw, 500px);
+    }
+    .cat_pupils {
+        display: none;
+    }
+}
 .cat_img_2{
     bottom: -75px;
     width: clamp(144px, 22.3vw, 321px);
@@ -259,7 +268,7 @@ img{
     left: 50px;
     right: auto;
     width: clamp(191px, 27vw, 370px);
-    bottom: clamp(-100px, -7.64vw, -80px);
+     bottom: clamp(-120px, -7.9vw, -80px);
 }
 .cat_img_4{
     left: 50px;
@@ -268,14 +277,12 @@ img{
     width: clamp(240px, 38vw, 547px);
 }
 .cat_img_5{
-    bottom: -90px;
+    bottom: -110px;
     width: clamp(226px, 31.4vw, 452px);
 }
 
 /* ********************************************************** */
 /*cat breed cards*/
-
-
 .breed_grid {
     position: relative;
     z-index: 3;
@@ -461,7 +468,6 @@ img{
     overflow-wrap: anywhere;
     margin: 0;
 }
-
 .fact_status:empty {
     display: none;
 }
@@ -510,7 +516,6 @@ img{
 }
 /* ********************************************************** */
 /*memory*/
-
 .memory_area {
     position: relative;
     z-index: 3;
@@ -704,11 +709,11 @@ img{
         background-color: var(--col-selected);
     }
 
-    .cat_img_1 {
+    /*.cat_img_1 {
         right: 0px;
         bottom: -60px;
         width: clamp(248px, 65vw, 500px);
-    }
+    }*/
 
     /*breeds*/
     .breed_grid {
@@ -756,7 +761,7 @@ footer{
     box-sizing: border-box;
     padding-top: 80px;
     margin-top: auto;
-    min-height: 100px;
+    min-height: 150px;
     height: auto;
     display: flex;
     justify-content: center;
@@ -766,4 +771,45 @@ footer p{
     color: var(--col-background);
     text-align: center;
     margin: 0;
+}
+
+/* ********************************************************** */
+/*mouse*/
+@media (pointer: fine) {
+    body,
+    a,
+    button {
+        cursor: none;
+    }
+}
+.mouse_cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: auto;
+    width: 80px;
+object-fit: contain;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-20%, -10%);
+    transition: transform 0.03s linear;
+}
+@media (pointer: coarse) {
+    .mouse_cursor {
+        display: none;
+    }
+}
+@media (min-width: 1025px) and (pointer: fine) {
+    html,
+    body,
+    body *,
+    body *::before,
+    body *::after {
+        cursor: none !important;
+    }
+}
+@media (max-width: 1024px), (pointer: coarse) {
+    .mouse_cursor {
+        display: none;
+    }
 }

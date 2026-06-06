@@ -333,3 +333,12 @@ if (menuToggle !== null && mainMenu !== null) {
         }
     });
 }
+/**mouse**/
+const mouseCursor = document.querySelector('#mouseCursor');
+
+if (mouseCursor !== null) {
+    document.addEventListener('mousemove', function (event) {
+        mouseCursor.style.left = event.clientX + 'px';
+        mouseCursor.style.top = event.clientY + 'px';
+    });
+}
