@@ -292,57 +292,93 @@ img{
 }
 
 /*sort by*/
-.breed_controls{
+.breed_controls {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 75px;
+    width: fit-content;
+}
+.sort_toggle {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 75px;
-    width: fit-content;
+    gap: 10px;
     background-color: var(--col-hover);
+    color: var(--col-text1);
+    font: var(--ff-button);
+    border: none;
     border-radius: var(--button-border);
     height: var(--sort_height);
     padding: 0 20px 0 28px;
+    cursor: pointer;
     transition: background-color 0.2s;
-}
-.breed_controls label{
-    font: var(--ff-button);
-    color: var(--col-text1);
-    padding: 0;
-    height: auto;
-    display: flex;
-    align-items: center;
     white-space: nowrap;
-    cursor: pointer;
+    position: relative;
+    z-index: 2;
 }
-#breed_sort{
-    font: var(--ff-button);
-    color: var(--col-text1);
-    background-color: transparent;
-    border:none;
-    outline: none;
-    border-radius: var(--button-border);
-    height: var(--sort_height);
-    padding: 0 8px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    appearance: auto;
-}
-.breed_controls:hover{
+.sort_toggle:hover,
+.sort_toggle[aria-expanded="true"] {
     background-color: var(--col-selected);
 }
-#breed_sort option{
+.sort_toggle_icon {
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+.sort_toggle_icon path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.sort_toggle[aria-expanded="true"] .sort_toggle_icon {
+    transform: rotate(180deg);
+}
+.sort_menu {
+    display: none;
+    flex-direction: column;
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 100%;
     background-color: white;
+    border-radius: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    z-index: 19;
+    margin: 0;
+    padding: 14px 0;
+}
+.sort_menu.open {
+    display: flex;
+}
+.sort_option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: clamp(44px, 10vw, 56px);
+    background-color: transparent;
+    border: none;
     color: var(--col-text1);
     font: var(--ff-button);
+    cursor: pointer;
+    padding: 0 20px;
+    white-space: nowrap;
 }
-#breed_sort option:hover{
-    background-color: var(--col-selected);
-    color: var(--col-text1);
-}
-#breed_sort option:checked{
+.sort_option:hover {
     background-color: var(--col-hover);
-    color: var(--col-text1);
 }
+.sort_option.active {
+    background-color: var(--col-hover);
+}
+
 
 /* ********************************************************** */
 /*cat fact card*/
@@ -376,10 +412,9 @@ img{
     border-radius: 24px;
     padding: var(--inner-card-pad);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    position: relative;
 }
 .fact_text {
     font: var(--ff-text);
@@ -387,6 +422,14 @@ img{
     text-align: center;
     max-width: 90%;
     overflow-wrap: anywhere;
+    margin: 0;
+}
+.fact_status {
+    margin: 0;
+    text-align: center;
+}
+.fact_status:empty {
+    display: none;
 }
 /* ********************************************************** */
 /*cat pictures card*/
@@ -574,14 +617,14 @@ img{
         stroke-linecap: round;
         stroke-linejoin: round;
     }
-    nav ul.menu {
+    nav ul.menu{
         display: none;
         flex-direction: column;
         align-items: stretch;
         gap: 10px;
         position: absolute;
         top: 100%;
-        left: 54%;
+        left: 46%;
         transform: translateX(calc(-50% + clamp(0px, 4vw, 27px)));
         width: clamp(160px, 58vw, 191px);
         background-color: white;

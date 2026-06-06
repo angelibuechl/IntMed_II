@@ -34,14 +34,29 @@
     </header>
     <main class="breeds_page">
       <div class="breed_controls">
-        <label for="breed_sort">sort by:</label>
-        <select id="breed_sort">
-          <option value="breed">breed name</option>
-          <option value="country">country</option>
-          <option value="origin">origin</option>
-          <option value="coat">coat</option>
-          <option value="pattern">pattern</option>
-        </select>
+        <button class="sort_toggle" id="sortToggle" aria-expanded="false">
+          sort by: <span id="sortLabel">breed name</span>
+          <svg class="sort_toggle_icon" viewBox="0 0 17 17" aria-hidden="true">
+            <path d="M5 7L8.5 10.5L12 7" />
+          </svg>
+        </button>
+        <ul class="sort_menu" id="sortMenu">
+          <li>
+            <button class="sort_option active" data-value="breed">
+              breed name
+            </button>
+          </li>
+          <li>
+            <button class="sort_option" data-value="country">country</button>
+          </li>
+          <li>
+            <button class="sort_option" data-value="origin">origin</button>
+          </li>
+          <li><button class="sort_option" data-value="coat">coat</button></li>
+          <li>
+            <button class="sort_option" data-value="pattern">pattern</button>
+          </li>
+        </ul>
       </div>
       <section class="breed_grid" id="breedGrid">
         <p class="breed_status" id="breedStatus">cat breeds loading...</p>

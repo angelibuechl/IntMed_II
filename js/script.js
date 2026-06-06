@@ -17,30 +17,52 @@ async function loadApiData(url) {
 //**breeds**
 const breedGrid = document.querySelector('#breedGrid');
 const breedStatus = document.querySelector('#breedStatus');
-const breedSort = document.querySelector('#breed_sort');
+const sortToggle = document.querySelector('#sortToggle');
+const sortMenu = document.querySelector('#sortMenu');
+const sortLabel = document.querySelector('#sortLabel');
 
-if (breedGrid !== null && breedSort !== null) {
+if (breedGrid !== null && sortToggle !== null) {
     await initBreedsPage();
 }
 async function initBreedsPage() {
     const data = await loadApiData(apiUrls.breeds);
- 
     if (data !== false) {
         const breeds = data.data;
         showBreeds(breeds);
-        breedSort.addEventListener('input', function (event) {
-            const sortKey = event.target.value;
-            const sortedBreeds = breeds.toSorted(function (a, b) {
-                if (a[sortKey] > b[sortKey]) return 1;
-                if (a[sortKey] < b[sortKey]) return -1;
-                return 0;
+        sortToggle.addEventListener('click', function (event) {
+            event.stopPropagation();
+            const isOpen = sortMenu.classList.toggle('open');
+            sortToggle.setAttribute('aria-expanded', isOpen);
+        });
+        sortMenu.querySelectorAll('.sort_option').forEach(function (option) {
+            option.addEventListener('click', function () {
+                const sortKey = option.dataset.value;
+                const sortedBreeds = breeds.toSorted(function (a, b) {
+                    if (a[sortKey] > b[sortKey]) return 1;
+                    if (a[sortKey] < b[sortKey]) return -1;
+                    return 0;
+                });
+                showBreeds(sortedBreeds);
+                sortLabel.innerText = option.innerText;
+                sortMenu.querySelectorAll('.sort_option').forEach(function (o) {
+                    o.classList.remove('active');
+                });
+                option.classList.add('active');
+                sortMenu.classList.remove('open');
+                sortToggle.setAttribute('aria-expanded', 'false');
             });
-            showBreeds(sortedBreeds);
+        });
+        document.addEventListener('click', function () {
+            if (sortMenu.classList.contains('open')) {
+                sortMenu.classList.remove('open');
+                sortToggle.setAttribute('aria-expanded', 'false');
+            }
         });
     } else {
         breedStatus.innerText = 'cat breeds could not be loaded';
     }
 }
+
 function showBreeds(breeds) {
     breedGrid.innerHTML = '';
     breeds.forEach(function (breed) {
