@@ -1,7 +1,3 @@
-console.log("blub");
-
-
-
 //**APIs**
 const apiUrls={
     breeds: 'https://catfact.ninja/breeds',
@@ -9,7 +5,6 @@ const apiUrls={
     catImage: 'https://api.thecatapi.com/v1/images/search',
     memory: 'https://api.thecatapi.com/v1/images/search?limit=6'
 };
-
 async function loadApiData(url) {
     try {
         const response = await fetch(url);
@@ -19,9 +14,6 @@ async function loadApiData(url) {
         return false;
     }
 }
-//const data = await loadBreeds();
-//console.log(data);
-
 //**breeds**
 const breedGrid = document.querySelector('#breedGrid');
 const breedStatus = document.querySelector('#breedStatus');
@@ -30,20 +22,14 @@ const breedSort = document.querySelector('#breed_sort');
 if (breedGrid !== null && breedSort !== null) {
     await initBreedsPage();
 }
-
-//Breed-Seite initialisieren
 async function initBreedsPage() {
     const data = await loadApiData(apiUrls.breeds);
  
     if (data !== false) {
-        // Breed-Daten aus dem API-Response-Objekt holen
         const breeds = data.data;
-        // Karten beim ersten Laden anzeigen
         showBreeds(breeds);
-        // Sortierung bei Änderung des Dropdowns auslösen
         breedSort.addEventListener('input', function (event) {
             const sortKey = event.target.value;
-            // Array alphabetisch nach gewähltem Key sortieren
             const sortedBreeds = breeds.toSorted(function (a, b) {
                 if (a[sortKey] > b[sortKey]) return 1;
                 if (a[sortKey] < b[sortKey]) return -1;
@@ -52,37 +38,29 @@ async function initBreedsPage() {
             showBreeds(sortedBreeds);
         });
     } else {
-        // Fehlermeldung ins DOM schreiben
         breedStatus.innerText = 'cat breeds could not be loaded';
     }
 }
-
-// Leert das Grid und zeigt alle Breed-Karten an
 function showBreeds(breeds) {
     breedGrid.innerHTML = '';
-    // Für jede Breed eine Karte erstellen und ins Grid laden
     breeds.forEach(function (breed) {
         const card = createBreedCard(breed);
         breedGrid.appendChild(card);
     });
 }
-
-//einzelne Breed-Card als DOM-Element
-function createBreedCard(breed) {
-    //Äussere Card
+function createBreedCard(breed) {    
     const outerCard = document.createElement('article');
     outerCard.classList.add('breed_card');
-    //innere Card
+    
     const innerCard = document.createElement('div');
     innerCard.classList.add('breed_card_inner');
-    //breed name als Titel
+
     const title = document.createElement('h2');
     title.innerText = breed.breed;
 
     const list = document.createElement('dl');
     list.classList.add('breed_info_list');
 
-    //Infozeilen
     const country = createInfoRow('country:', breed.country);
     const origin = createInfoRow('origin:', breed.origin);
     const coat = createInfoRow('coat:', breed.coat);
@@ -99,8 +77,6 @@ function createBreedCard(breed) {
 
     return outerCard;
 }
-
-//einzelne Infozeile (Label + Wert)
 function createInfoRow(label, value) {
     const row = document.createElement('div');
     row.classList.add('breed_info_row');
@@ -110,7 +86,6 @@ function createInfoRow(label, value) {
 
     const description = document.createElement('p');
     
-    // Wenn kein Wert vorhanden ist, "-" anzeigen
     if (value === '' || value === null || value === undefined) {
         description.innerText = '-';
     } else {
@@ -125,16 +100,13 @@ function createInfoRow(label, value) {
 const factStatus = document.querySelector('#factStatus');
 const factText = document.querySelector('#factText');
 const factButton = document.querySelector('#factButton');
-
 if (factStatus !== null && factText !== null && factButton !== null) {
     initFactsPage();
 }
-
 async function initFactsPage() {
     await showCatFact();
     factButton.addEventListener('click', showCatFact);
 }
-
 async function showCatFact() {
     factStatus.innerText = 'cat fact loading...';
     factText.innerText = '';
@@ -155,7 +127,6 @@ const pictureCard = document.querySelector('#pictureCard');
 const pictureStatus = document.querySelector('#pictureStatus');
 const catPicture = document.querySelector('#catPicture');
 const pictureButton = document.querySelector('#pictureButton');
-
 if (pictureCard && pictureStatus && catPicture && pictureButton) {
     initPicturesPage();
 }
@@ -168,8 +139,7 @@ async function showCatPicture() {
     catPicture.style.display = 'none';
     pictureButton.disabled = true;
     const data = await loadApiData(apiUrls.catImage);
-
-if (data && data[0]) {
+    if (data && data[0]) {
         const image = data[0];
         const ratio = image.width / image.height;
         const newWidth = pictureCard.offsetHeight * ratio;
@@ -196,16 +166,13 @@ const memoryMessage = document.querySelector('#memoryMessage');
 let firstCard = null;
 let secondCard = null;
 let lockMemory = false;
-
 if (memoryGrid !== null && memoryButton !== null) {
     initMemoryPage();
 }
-
 async function initMemoryPage() {
     await showMemory();
     memoryButton.addEventListener('click', showMemory);
 }
-
 async function showMemory() {
     memoryGrid.innerHTML = '<p class="memory_status" id="memoryStatus">cat memory loading...</p>';
     memoryButton.disabled = true;
@@ -214,7 +181,6 @@ async function showMemory() {
         memoryMessage.classList.remove('show');
         memoryMessage.innerText = '';
     }
-
     const data = await loadApiData(apiUrls.memory);
     if (data !== false && Array.isArray(data) && data.length >= 6) {
         const sixCats = data.slice(0, 6);
@@ -234,7 +200,6 @@ async function showMemory() {
     }
     memoryButton.disabled = false;
 }
-
 function createMemoryCard(cat) {
     const card = document.createElement('button');
     card.classList.add('memory_card');
@@ -258,7 +223,6 @@ function createMemoryCard(cat) {
     });
     return card;
 }
-
 function flipMemoryCard(card) {
     if (lockMemory || card.classList.contains('open') || card.classList.contains('done')) {
         return;
@@ -299,4 +263,28 @@ function checkMemorySolved() {
             memoryMessage.classList.add('show');
         }
     }
+}
+
+/**mobile dropdown-menu**/
+const menuToggle = document.querySelector('#menuToggle');
+const mainMenu = document.querySelector('#mainMenu');
+ 
+if (menuToggle !== null && mainMenu !== null) {
+    menuToggle.addEventListener('click', function (event) {
+        event.stopPropagation();
+        const isOpen = mainMenu.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+    mainMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            mainMenu.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+    document.addEventListener('click', function () {
+        if (mainMenu.classList.contains('open')) {
+            mainMenu.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
 }

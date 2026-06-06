@@ -3,11 +3,11 @@
 
 :root {
   /*Fonts*/
-  --ff-title: 400 clamp(48px, 8vw, 96px)/normal "Shrikhand", serif;
-  --ff-smalltitle: 400 clamp(28px, 4vw, 40px)/normal "Coiny", system-ui;
-  --ff-nav: 800 clamp(24px, 2.5vw, 24px)/normal "Nunito", sans-serif;
-  --ff-button: 800 clamp(12px, 2vw, 24px)/1 "Nunito", sans-serif;
-  --ff-text: 400 clamp(14px, 1.6vw, 20px)/normal "Nunito", sans-serif;
+  --ff-title: 400 clamp(48px, 12vw, 96px)/normal "Shrikhand", serif;
+  --ff-smalltitle: 400 clamp(32px, 8vw, 40px)/normal "Coiny", system-ui;
+  --ff-nav: 800 clamp(16px, 4vw, 24px)/normal "Nunito", sans-serif;
+  --ff-button: 800 clamp(15px, 3.75vw, 24px)/1 "Nunito", sans-serif;
+  --ff-text: 400 clamp(14px, 3.5vw, 20px)/normal "Nunito", sans-serif;
   
   /*Colors*/
   --col-background: #FFF7EC;
@@ -35,7 +35,6 @@
   --img-width: clamp(220px, 42vw, 520px);
 
   --sort_height: clamp(45px, 5vw, 60px);
-
 }
 
 /* ********************************************************** */
@@ -83,6 +82,8 @@ main{
 header{
     align-items: center;
     position: sticky;
+    top: 0;
+    z-index: 100;
 }
 .logo, .logo_start{
     display: block;
@@ -131,8 +132,8 @@ nav a{
 nav a.active{
     background-color: var(--col-selected);
 }
-nav a.active{
-    background-color: var(--col-selected);
+nav a:hover{
+    background-color: var(--col-hover);
 }
 .menu_start {
     flex-direction: column;
@@ -154,8 +155,8 @@ nav a.active{
 .menu a{
     font-size: clamp(18px, 1.2vw, 24px);
 }
-nav a:hover{
-    background-color: var(--col-hover);
+.menu_toggle {
+    display: none;
 }
 
 /*loading status*/
@@ -510,28 +511,135 @@ img{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-sizing: border-box;
     margin: 0;
     padding: clamp(18px, 4vw, 34px);
-    width: min(80%, 520px);
+    width: min(90%, 520px);
+    max-width: calc(100% - 28px);
     font: var(--ff-smalltitle);
+    line-height: 1.1;
     color: var(--col-button);
     background-color: var(--col-background);
     border: 10px solid var(--col-border);
     border-radius: var(--button-border);
     text-align: center;
+    overflow-wrap: break-word;
 }
 .memory_message.show {
     display: block;
 }
 
 @media (max-width: 700px) {
-    .memory_grid {
-        grid-template-columns: repeat(3, 1fr);
+    nav {
+        position: relative;
+        width: 100%;
     }
-}
-@media (max-width: 450px) {
-    .memory_grid {
-        grid-template-columns: repeat(2, 1fr);
+    .menu_toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: clamp(160px, 60vw, 196px);
+        height: clamp(50px, 10vw, 65px);
+        margin: 0 auto 0;
+        background-color: var(--col-button);
+        color: var(--col-text1);
+        font: var(--ff-nav);
+        border: none;
+        border-radius: var(--button-border);
+        cursor: pointer;
+        transition: background-color 0.2s;
+        position: relative;
+        z-index: 20;
+    }
+    .menu_toggle[aria-expanded="true"] .menu_toggle_icon {
+        display: inline-block;
+        transform: rotate(180deg);
+    }
+    .menu_toggle_icon {
+        width: 17px;
+        height: 17px;
+        display: inline-block;
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+        position: absolute;
+        right: 32px;
+    }
+    .menu_toggle_icon path {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    nav ul.menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        position: absolute;
+        top: 100%;
+        left: 54%;
+        transform: translateX(calc(-50% + clamp(0px, 4vw, 27px)));
+        width: clamp(160px, 58vw, 191px);
+        background-color: white;
+        border-radius: 24px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        z-index: 19;
+        margin: 0;
+        padding: 14px 0;
+    }
+    nav ul.menu.open {
+        display: flex;
+    }
+    nav ul.menu li {
+        width: 100%;
+    }
+    nav ul.menu a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: clamp(52px, 12vw, 68px);
+        border-radius: 0;
+        background-color: transparent;
+        font-size: clamp(16px, 4vw, 20px);
+        white-space: normal;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    nav ul.menu a:hover {
+        background-color: var(--col-hover);
+    }
+    nav ul.menu a.active {
+        background-color: var(--col-selected);
+    }
+
+    /*memory*/
+     .memory_grid {
+        grid-template-columns: repeat(3, 102px);
+        gap: 14px;
+        justify-content: center;
+    }
+    .memory_card {
+        width: 102px;
+        height: 102px;
+    }
+    .memory_card_inner {
+        padding: 10px;
+    }
+    .memory_message {
+        width: calc(100% - 28px);
+        padding: 18px 14px;
+        font: var(--ff-nav);
+        border-width: 8px;
+    }
+    .memory_card,
+    .memory_card::before,
+    .memory_card_inner,
+    .memory_img {
+        border-radius: 29px;
     }
 }
 

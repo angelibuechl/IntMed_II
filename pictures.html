@@ -10,7 +10,16 @@
     <header>
       <a href="index.html" class="logo">Purradise</a>
       <nav>
-        <ul class="menu">
+        <button class="menu_toggle" id="menuToggle" aria-expanded="false">
+          menu<svg
+            class="menu_toggle_icon"
+            viewBox="0 0 17 17"
+            aria-hidden="true"
+          >
+            <path d="M5 7L8.5 10.5L12 7" />
+          </svg>
+        </button>
+        <ul class="menu" id="mainMenu">
           <li><a href="index.html">start</a></li>
           <li><a href="breeds.html">cat breeds</a></li>
           <li><a href="facts.html">random cat facts</a></li>
