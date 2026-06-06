@@ -32,8 +32,6 @@
 
   --card-label-width: clamp(90px, 10vw, 120px);
 
-  --img-width: clamp(220px, 42vw, 520px);
-
   --sort_height: clamp(45px, 5vw, 60px);
 }
 
@@ -76,7 +74,9 @@ main{
     flex: 1;
     overflow: visible;
 }
-
+.breeds_page, .facts_page, .memory_page, .pictures_page {
+    padding: 60px clamp(20px, 6vw, 90px) 180px;
+}
 /* ********************************************************** */
 /*Header*/
 header{
@@ -164,7 +164,10 @@ nav a:hover{
     color: var(--col-button);
     font-size: xx-large;
     text-align: center;
+    justify-self: center;
+    align-self: center;
     grid-column: 1 / -1;
+    margin: 0;
 }
 
 /*buttons*/
@@ -203,40 +206,41 @@ html {
 img{
     position: absolute;
     height: auto;
-    width: var(--img-width);
-    right: 0;
+    right: 50px;
     left: auto;
     z-index: 2;
 }
 .cat_img_1{
-    bottom: -270px;
-    right: -400px;
-    width: clamp(320px, 92vw, 1325px);
+    right: 0px;
+    width: clamp(248px, 60vw, 865px);;
     max-width: none;
+    bottom: clamp(-100px, -7.64vw, -70px);
 }
 .cat_img_2{
     bottom: -75px;
+    width: clamp(144px, 22.3vw, 321px);
 }
 .cat_img_3{
-    left: 0;
+    left: 50px;
     right: auto;
-    bottom: -120px;
+    width: clamp(191px, 27vw, 370px);
+    bottom: clamp(-100px, -7.64vw, -80px);
 }
 .cat_img_4{
-    left: 0;
+    left: 50px;
     right: auto;
-    bottom: -150px;
+    bottom: -80px;
+    width: clamp(240px, 38vw, 547px);
 }
 .cat_img_5{
-    bottom: -150px;
+    bottom: -90px;
+    width: clamp(226px, 31.4vw, 452px);
 }
 
 /* ********************************************************** */
 /*cat breed cards*/
 
-.breeds_page{
-    padding: 60px clamp(20px, 6vw, 90px) 180px;
-}
+
 .breed_grid {
     position: relative;
     z-index: 3;
@@ -382,9 +386,7 @@ img{
 
 /* ********************************************************** */
 /*cat fact card*/
-.facts_page {
-    padding: 60px clamp(20px, 6vw, 90px) 180px;
-}
+
 .fact_grid {
     position: relative;
     z-index: 3;
@@ -424,19 +426,12 @@ img{
     overflow-wrap: anywhere;
     margin: 0;
 }
-.fact_status {
-    margin: 0;
-    text-align: center;
-}
+
 .fact_status:empty {
     display: none;
 }
 /* ********************************************************** */
 /*cat pictures card*/
-
-.pictures_page {
-    padding: 60px clamp(20px, 6vw, 90px) 180px;
-}
 .picture_grid {
     position: relative;
     z-index: 3;
@@ -480,9 +475,7 @@ img{
 }
 /* ********************************************************** */
 /*memory*/
-.memory_page {
-    padding: 60px clamp(20px, 6vw, 90px) 180px;
-}
+
 .memory_area {
     position: relative;
     z-index: 3;
@@ -495,6 +488,8 @@ img{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: clamp(25px, 4vw, 55px);
+    min-height: clamp(450px, 70vw, 615px);
+    align-content: center;
 }
 .memory_grid.solved {
     opacity: 0.35;
@@ -674,6 +669,8 @@ img{
         grid-template-columns: repeat(3, 102px);
         gap: 14px;
         justify-content: center;
+        min-height: 450px;
+        align-content: center;
     }
     .memory_card {
         width: 102px;
@@ -703,6 +700,12 @@ footer{
     height: 130px;
     box-sizing: border-box;
     padding-top: 80px;
+    margin-top: auto;
+    min-height: 100px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 footer p{
     color: var(--col-background);
