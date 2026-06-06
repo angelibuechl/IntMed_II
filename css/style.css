@@ -219,6 +219,38 @@ img{
     max-width: none;
     bottom: clamp(-100px, -7.64vw, -70px);
 }
+.cat_start_wrap {
+    position: absolute;
+    right: 0px;
+    bottom: clamp(-110px, -7.64vw, -80px);
+    width: clamp(248px, 60vw, 865px);
+    z-index: 2;
+}
+.cat_start_wrap picture{
+    display: block;
+    width: 100%;
+}
+.cat_start_wrap .cat_img_1 {
+    position: static;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+}
+.cat_pupils {
+    position: absolute;
+    width: clamp(70px, 11.24vw, 170px);
+    left: 19.5%;
+    top: 51%;
+    z-index: 3;
+    pointer-events: none;
+    transform: translate(
+        calc(-50% + var(--move-x, 0px)),
+        calc(-50% + var(--move-y, 0px))
+    );
+    transition: transform 0.06s linear;
+}
+
 .cat_img_2{
     bottom: -75px;
     width: clamp(144px, 22.3vw, 321px);

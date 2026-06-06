@@ -178,6 +178,29 @@ async function showCatPicture() {
         pictureButton.disabled = false;
     }
 }
+/**start img eyes**/
+const catPupils = document.querySelector('.cat_pupils');
+
+if (catPupils !== null) {
+    document.addEventListener('mousemove', function (event) {
+        const rect = catPupils.getBoundingClientRect();
+
+        const pupilsCenterX = rect.left + rect.width / 2;
+        const pupilsCenterY = rect.top + rect.height / 2;
+
+        const dx = event.clientX - pupilsCenterX;
+        const dy = event.clientY - pupilsCenterY;
+
+        const angle = Math.atan2(dy, dx);
+        const maxMove = Math.min(rect.width * 0.03, 4);
+
+        const moveX = Math.cos(angle) * maxMove;
+        const moveY = Math.sin(angle) * maxMove;
+
+        catPupils.style.setProperty('--move-x', moveX + 'px');
+        catPupils.style.setProperty('--move-y', moveY + 'px');
+    });
+}
 
 /**memory**/
 const memoryGrid = document.querySelector('#memoryGrid');
