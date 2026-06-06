@@ -574,6 +574,16 @@ img{
         position: relative;
         width: 100%;
     }
+    .menu_start {
+        gap: 10px;
+    }
+    .menu_start a {
+        width: clamp(160px, 46.25vw, 196px);
+        height: clamp(50px, 17.25vw, 69px);
+        font: var(--ff-nav);
+        padding: 10px;
+        box-sizing: border-box;
+    }
     .menu_toggle {
         display: flex;
         justify-content: center;
