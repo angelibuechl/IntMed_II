@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Purradise
 
 **FS26_IM2_Semesterprojekt**
@@ -123,3 +124,7 @@ Auch die mobile Version brachte einige Herausforderungen mit sich, z.B. die Lott
 ## Fazit
 
 Insgesamt bin ich mit dem Ergebnis meines Projekts zufrieden. Ich konnte die geplanten Kernfunktionen umsetzen und verschiedene API-Daten in einer interaktiven Webseite darstellen. Besonders durch die animierten Katzenaugen, das Custom Dropdown, die dynamischen Bildrahmen und das Memory-Spiel konnte ich mein Verständnis für JavaScript, DOM-Manipulation und responsive Layouts vertiefen.
+=======
+# IntMed_II
+im2.exirafov.myhostpoint.ch
+>>>>>>> 8619a8065182569bb846796977249d65da5cea3e
