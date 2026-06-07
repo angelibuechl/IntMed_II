@@ -209,18 +209,19 @@ html {
     border: none;
     cursor: pointer;
 }
-.jump_up_button:hover,
 .fact_button:hover,
 .picture_button:hover,
 .memory_button:hover {
     background-color: var(--col-selected);
 }
-.jump_up_button,
-.scroll_up_button,
 .jump_up_button:hover,
-.scroll_up_button:hover,
+.scroll_up_button:hover {
+    background-color: var(--col-selected);
+}
 .jump_up_button:active,
-.scroll_up_button:active,
+.scroll_up_button:active {
+    background-color: var(--col-selected);
+}
 .jump_up_button:focus,
 .scroll_up_button:focus,
 .jump_up_button:visited,
@@ -682,29 +683,17 @@ footer p{
 
 /* ********************************************************** */
 /*mouse*/
-@media (pointer: fine) {
-    body,
-    a,
-    button {
-        cursor: none;
-    }
-}
 .mouse_cursor {
     position: fixed;
     left: 0;
     top: 0;
     right: auto;
     width: 80px;
-object-fit: contain;
+    object-fit: contain;
     z-index: 9999;
     pointer-events: none;
     transform: translate(-20%, -10%);
     transition: transform 0.03s linear;
-}
-@media (pointer: coarse) {
-    .mouse_cursor {
-        display: none;
-    }
 }
 @media (min-width: 1025px) and (pointer: fine) {
     html,
@@ -714,8 +703,18 @@ object-fit: contain;
     body *::after {
         cursor: none !important;
     }
+    .mouse_cursor {
+        display: block;
+    }
 }
 @media (max-width: 1024px), (pointer: coarse) {
+    html,
+    body,
+    body *,
+    body *::before,
+    body *::after {
+        cursor: auto !important;
+    }
     .mouse_cursor {
         display: none;
     }
@@ -723,7 +722,7 @@ object-fit: contain;
 /* ********************************************************** */
 /*lottie*/
 .intro_animation {
-    display: none; /* ANGEPASST: standardmäßig auf Desktop aus */
+    display: none;
 }
 /* ********************************************************** */
 @media (max-width: 700px) {
