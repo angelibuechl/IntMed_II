@@ -364,3 +364,11 @@ if (scrollUpButton !== null && bottomJumpButton !== null) {
     window.addEventListener('resize', toggleScrollUpButton);
     toggleScrollUpButton();
 }
+/**lottie**/
+const introAnimation = document.querySelector('#introAnimation');
+
+if (introAnimation !== null) {
+    setTimeout(function () {
+        introAnimation.classList.add('hide');
+    }, 3000);
+}
