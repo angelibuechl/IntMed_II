@@ -1,6 +1,5 @@
 @import "resets.css";
 @import "fonts.css";
-
 :root {
   /*Fonts*/
   --ff-title: 400 clamp(48px, 12vw, 96px)/normal "Shrikhand", serif;
@@ -8,7 +7,6 @@
   --ff-nav: 800 clamp(16px, 4vw, 24px)/normal "Nunito", sans-serif;
   --ff-button: 800 clamp(15px, 3.75vw, 24px)/1 "Nunito", sans-serif;
   --ff-text: 400 clamp(14px, 3.5vw, 20px)/normal "Nunito", sans-serif;
-  
   /*Colors*/
   --col-background: #FFF7EC;
   --col-text1: #6B4F4F;
@@ -17,7 +15,6 @@
   --col-button: #FFA5C3;
   --col-hover: #FFD166;
   --col-border: #B6D7A8;
-
   /*Spacing*/
   --button_gap: clamp(10px, 2vw, 31px);
   --button-pad: 10px;
@@ -33,8 +30,11 @@
   --card-label-width: clamp(90px, 10vw, 120px);
 
   --sort_height: clamp(45px, 5vw, 60px);
-}
 
+  --page-side-space: clamp(20px, 6vw, 90px);
+  --page-top-space: clamp(25px, 5dvh, 60px);
+  --page-footer-gap: clamp(35px, 5dvh, 55px);
+}
 /* ********************************************************** */
 /*Base*/
 h1{
@@ -63,7 +63,7 @@ a{
 }
 body{
     background-color: var(--col-background);
-    min-height: 100vh;
+    min-height: 100dvh;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -73,9 +73,21 @@ main{
     position: relative;
     flex: 1;
     overflow: visible;
+    min-height: 0;
 }
-.breeds_page, .facts_page, .memory_page, .pictures_page {
-    padding: 60px clamp(20px, 6vw, 90px) 180px;
+.breeds_page,
+.memory_page {
+    padding: var(--page-top-space) var(--page-side-space) var(--page-footer-gap);
+}
+.facts_page,
+.pictures_page {
+    flex: 1;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: var(--page-top-space) var(--page-side-space) var(--page-footer-gap);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 /* ********************************************************** */
 /*Header*/
@@ -95,10 +107,9 @@ header{
     padding-bottom: 10px;
 }
 .logo_start{
-    padding-top: 100px;
-    padding-bottom: 80px;
+    padding-top: clamp(40px, 8vh, 80px);
+    padding-bottom: clamp(35px, 6vh, 60px);
 }
-
 /* ********************************************************** */
 /*Menu*/
 nav{
@@ -137,7 +148,7 @@ nav a:hover{
 .menu_start {
     flex-direction: column;
     align-items: center;
-    gap: 31px;
+    gap: clamp(16px, 3vh, 31px);
     width: fit-content;
     margin-left: clamp(40px, 8vw, 120px);
     margin-right: auto;
@@ -160,7 +171,6 @@ nav a:hover{
 .menu_toggle {
     display: none;
 }
-
 /*loading status*/
 .breed_status, .fact_status, .picture_status, .memory_status {
     font: var(--ff-button);
@@ -172,7 +182,10 @@ nav a:hover{
     grid-column: 1 / -1;
     margin: 0;
 }
-
+.start_page {
+    flex: 1;
+    min-height: 0;
+}
 /*buttons*/
 html {
     scroll-behavior: smooth;
@@ -186,7 +199,7 @@ html {
     align-items: center;
     width: clamp(120px, 18vw, 170px);
     height: clamp(50px, 6vw, 65px);
-    margin: 75px auto 0;
+    margin: clamp(22px, 4dvh, 45px) auto 0;
     background-color: var(--col-hover);
     color: var(--col-text1);
     font: var(--ff-button);
@@ -202,7 +215,6 @@ html {
 .memory_button:hover {
     background-color: var(--col-selected);
 }
-
 .jump_up_button,
 .scroll_up_button,
 .jump_up_button:hover,
@@ -226,7 +238,6 @@ html {
 .memory_button:disabled {
     background-color: var(--col-hover);
 }
-
 .fact_button:focus-visible, 
 .picture_button:focus-visible,
 .memory_button:focus-visible,
@@ -241,16 +252,13 @@ html {
     right: clamp(20px, 4vw, 50px);
     bottom: clamp(20px, 4vw, 50px);
     z-index: 50;
-
     width: clamp(50px, 7vw, 70px);
     height: clamp(50px, 7vw, 70px);
     margin: 0;
-
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transform: translateY(12px);
-
     transition:
         opacity 0.2s ease,
         visibility 0.2s ease,
@@ -263,15 +271,6 @@ html {
     pointer-events: auto;
     transform: translateY(0);
 }
-@media (max-width: 700px) {
-    .scroll_up_button {
-        width: 52px;
-        height: 52px;
-        right: 20px;
-        bottom: 20px;
-    }
-}
-
 /* ********************************************************** */
 /*Images*/
 img{
@@ -318,37 +317,26 @@ img{
     );
     transition: transform 0.06s linear;
 }
-@media (max-width: 1024px) {
-    .cat_start_wrap {
-        right: 0;
-        bottom: -80px;
-        width: clamp(248px, 65vw, 500px);
-    }
-    .cat_pupils {
-        display: none;
-    }
-}
 .cat_img_2{
     bottom: -75px;
-    width: clamp(144px, 22.3vw, 321px);
+    width: clamp(120px, 18vw, 260px);
 }
 .cat_img_3{
     left: 50px;
     right: auto;
-    width: clamp(191px, 27vw, 370px);
-     bottom: clamp(-120px, -7.9vw, -80px);
+    width: clamp(150px, 22vw, 300px);
+    bottom: clamp(-95px, -7vw, -65px);
 }
 .cat_img_4{
     left: 50px;
     right: auto;
     bottom: -80px;
-    width: clamp(240px, 38vw, 547px);
+    width: clamp(190px, 32vw, 440px);
 }
 .cat_img_5{
     bottom: -110px;
-    width: clamp(226px, 31.4vw, 452px);
+    width: clamp(180px, 26vw, 360px);
 }
-
 /* ********************************************************** */
 /*cat breed cards*/
 .breed_grid {
@@ -491,7 +479,6 @@ img{
 .sort_option.active {
     background-color: var(--col-hover);
 }
-
 /* ********************************************************** */
 /*cat fact card*/
 .fact_grid {
@@ -673,21 +660,92 @@ img{
 .memory_message.show {
     display: block;
 }
+/* ********************************************************** */
+/*Footer*/
+footer{
+    background-color: var(--col-text1);
+    height: 130px;
+    box-sizing: border-box;
+    padding-top: 80px;
+    margin-top: auto;
+    min-height: 150px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer p{
+    color: var(--col-background);
+    text-align: center;
+    margin: 0;
+}
 
+/* ********************************************************** */
+/*mouse*/
+@media (pointer: fine) {
+    body,
+    a,
+    button {
+        cursor: none;
+    }
+}
+.mouse_cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: auto;
+    width: 80px;
+object-fit: contain;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-20%, -10%);
+    transition: transform 0.03s linear;
+}
+@media (pointer: coarse) {
+    .mouse_cursor {
+        display: none;
+    }
+}
+@media (min-width: 1025px) and (pointer: fine) {
+    html,
+    body,
+    body *,
+    body *::before,
+    body *::after {
+        cursor: none !important;
+    }
+}
+@media (max-width: 1024px), (pointer: coarse) {
+    .mouse_cursor {
+        display: none;
+    }
+}
+/* ********************************************************** */
+/*lottie*/
+.intro_animation {
+    display: none; /* ANGEPASST: standardmäßig auf Desktop aus */
+}
+/* ********************************************************** */
 @media (max-width: 700px) {
+    body {
+        min-height: 100dvh;
+    }
+    .logo_start {
+        padding-top: clamp(24px, 5dvh, 45px);
+        padding-bottom: clamp(20px, 4dvh, 35px);
+    }
     nav {
         position: relative;
         width: 100%;
     }
     .menu_start {
-        gap: 10px;
-        align-items: center;
+        gap: clamp(8px, 1.8dvh, 14px);
         margin-left: auto;
         margin-right: auto;
     }
     .menu_start a {
-        width: clamp(160px, 46.25vw, 196px);
-        height: clamp(50px, 17.25vw, 69px);
+        width: clamp(160px, 46vw, 196px);
+        height: clamp(44px, 10dvh, 58px);
         font: var(--ff-nav);
         padding: 10px;
         box-sizing: border-box;
@@ -773,14 +831,32 @@ img{
     nav ul.menu a.active {
         background-color: var(--col-selected);
     }
-
-    /*.cat_img_1 {
-        right: 0px;
+    .cat_start_wrap {
+        width: clamp(240px, 68vw, 430px);
+        bottom: -40px;
+    }
+    .cat_img_2{
+        right: 3px;
         bottom: -60px;
-        width: clamp(248px, 65vw, 500px);
-    }*/
-
-    /*breeds*/
+    }
+    .cat_img_3,
+    .cat_img_4 {
+        left: 20px;
+        bottom:-50px;
+    }
+    .cat_img_5 {
+        right: 3px;
+        bottom: -50px;
+    }
+    .start_page {
+        flex: 1;
+        min-height: 0;
+    }
+    .facts_page,
+    .pictures_page {
+        padding: 60px clamp(18px, 5vw, 30px) clamp(35px, 5dvh, 55px);
+        justify-content: flex-start;
+    }
     .breed_grid {
         grid-template-columns: 249px;
         grid-auto-rows: 1fr;
@@ -789,7 +865,24 @@ img{
     .breed_card {
         width: 249px;
     }
-    /*memory*/
+    .jump_up_button,
+    .fact_button,
+    .picture_button,
+    .memory_button {
+        margin-top: clamp(14px, 3dvh, 28px);
+    }
+    .scroll_up_button {
+        width: 52px;
+        height: 52px;
+        right: 20px;
+        bottom: 20px;
+    }
+    .fact_card {
+        min-height: clamp(190px, 32dvh, 260px);
+    }
+    .picture_card {
+        height: clamp(190px, 32dvh, 260px);
+    }
      .memory_grid {
         grid-template-columns: repeat(3, 102px);
         gap: 14px;
@@ -816,75 +909,10 @@ img{
     .memory_img {
         border-radius: 29px;
     }
-}
-
-/* ********************************************************** */
-/*Footer*/
-footer{
-    background-color: var(--col-text1);
-    height: 130px;
-    box-sizing: border-box;
-    padding-top: 80px;
-    margin-top: auto;
-    min-height: 150px;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-footer p{
-    color: var(--col-background);
-    text-align: center;
-    margin: 0;
-}
-
-/* ********************************************************** */
-/*mouse*/
-@media (pointer: fine) {
-    body,
-    a,
-    button {
-        cursor: none;
+    footer {
+        min-height: clamp(80px, 13dvh, 110px);
+        padding-top: 0;
     }
-}
-.mouse_cursor {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: auto;
-    width: 80px;
-object-fit: contain;
-    z-index: 9999;
-    pointer-events: none;
-    transform: translate(-20%, -10%);
-    transition: transform 0.03s linear;
-}
-@media (pointer: coarse) {
-    .mouse_cursor {
-        display: none;
-    }
-}
-@media (min-width: 1025px) and (pointer: fine) {
-    html,
-    body,
-    body *,
-    body *::before,
-    body *::after {
-        cursor: none !important;
-    }
-}
-@media (max-width: 1024px), (pointer: coarse) {
-    .mouse_cursor {
-        display: none;
-    }
-}
-
-/* ********************************************************** */
-/*lottie*/
-.intro_animation {
-    display: none; /* ANGEPASST: standardmäßig auf Desktop aus */
-}
-@media (max-width: 700px) {
     .intro_animation {
         position: fixed;
         inset: 0;
@@ -902,5 +930,37 @@ object-fit: contain;
         height: 100dvh;
         width: auto;
         max-width: 100vw;
+    }
+}
+@media (max-width: 1024px) {
+    .cat_pupils {
+        display: none;
+    }
+}
+@media (min-width: 701px) and (max-width: 1024px) {
+    .logo_start {
+        padding-top: clamp(30px, 5vh, 50px);
+        padding-bottom: clamp(25px, 4vh, 40px);
+    }
+    .menu_start {
+        gap: clamp(12px, 2vh, 20px);
+        margin-left: clamp(30px, 6vw, 70px);
+    }
+    .menu_start a {
+        width: clamp(190px, 28vw, 230px);
+        height: clamp(55px, 8vh, 68px);
+        font-size: clamp(18px, 2.2vw, 22px);
+    }
+    .start_page {
+        flex: 1;
+        min-height: 0;
+    }
+    .cat_start_wrap {
+        width: clamp(330px, 58vw, 560px);
+        bottom: -40px;
+    }
+    footer {
+        min-height: 110px;
+        padding-top: 0;
     }
 }

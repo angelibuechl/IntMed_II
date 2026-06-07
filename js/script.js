@@ -37,11 +37,23 @@ async function initBreedsPage() {
         sortMenu.querySelectorAll('.sort_option').forEach(function (option) {
             option.addEventListener('click', function () {
                 const sortKey = option.dataset.value;
-                const sortedBreeds = breeds.toSorted(function (a, b) {
-                    if (a[sortKey] > b[sortKey]) return 1;
-                    if (a[sortKey] < b[sortKey]) return -1;
-                    return 0;
-                });
+                let sortedBreeds = [...breeds];
+
+                if (sortKey === 'breed_az') {
+                    sortedBreeds.sort(function (a, b) {
+                        return a.breed.localeCompare(b.breed);
+                    });
+                } else if (sortKey === 'breed_za') {
+                    sortedBreeds.sort(function (a, b) {
+                        return b.breed.localeCompare(a.breed);
+                    });
+                } else {
+                    sortedBreeds.sort(function (a, b) {
+                        const valueA = a[sortKey] || '';
+                        const valueB = b[sortKey] || '';
+                        return valueA.localeCompare(valueB);
+                    });
+                }
                 showBreeds(sortedBreeds);
                 sortLabel.innerText = option.innerText;
                 sortMenu.querySelectorAll('.sort_option').forEach(function (o) {
